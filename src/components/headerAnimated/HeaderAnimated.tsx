@@ -1,27 +1,31 @@
-import React, { useState } from 'react';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
-import { Platform, Dimensions, TouchableOpacity } from 'react-native';
-import { Container, Title, BackButton, BackTextTitle, Content } from './styles';
-import { useNavigation, useNavigationState } from '@react-navigation/native';
-
 import ArrowLeft from '@expo/vector-icons/MaterialIcons';
+import React, { useState } from 'react';
+import { useNavigation, useNavigationState } from '@react-navigation/native';
+import { Dimensions, Platform, TouchableOpacity } from 'react-native';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { BackButton, BackTextTitle, Container, Content, Title } from './styles';
 
 const Max_Header_Height =
-  Platform.OS == 'ios' ? 114 + getStatusBarHeight() : 114;
+  Platform.OS === 'ios' ? 114 + getStatusBarHeight() : 114;
 const Min_Header_Height = Platform.OS == 'ios' ? 70 + getStatusBarHeight() : 70;
 const Scroll_Distance = Max_Header_Height - Min_Header_Height;
 
 type THeader = {
   animHeaderValue?: any | null;
   title: string;
+  isAnimate?: boolean;
 };
 
-export function HeaderAnimated({ animHeaderValue, title }: THeader) {
+export function HeaderAnimated({
+  animHeaderValue,
+  title,
+  isAnimate = true,
+}: THeader) {
   const [backButtonSize, setBackButtonSize] = useState(0);
   const [titleSize, setTitleSize] = useState(0);
 
   const navigation = useNavigation();
-  const routesLength = useNavigationState(state => state.routes.length);
+  const routesLength = useNavigationState((state) => state.routes.length);
 
   const heightOfBar = animHeaderValue.interpolate({
     inputRange: [0, Scroll_Distance],
@@ -48,13 +52,13 @@ export function HeaderAnimated({ animHeaderValue, title }: THeader) {
   });
 
   return (
-    <Container height={heightOfBar}>
+    <Container height={isAnimate ? heightOfBar : 80}>
       {routesLength > 1 && (
         <BackButton
           onLayout={(e: any) => {
             setBackButtonSize(e.nativeEvent.layout.height);
           }}
-          bottomBackButton={positionBackButton}
+          bottomBackButton={isAnimate ? positionBackButton : 10}
           onPress={() => {
             console.log('voltar');
             navigation.goBack();
@@ -68,12 +72,16 @@ export function HeaderAnimated({ animHeaderValue, title }: THeader) {
         onLayout={(e: any) => {
           setTitleSize(e.nativeEvent.layout.width);
         }}
-        leftTitle={positionTitle}
-        style={{ fontSize: fontSize }}>
+        leftTitle={
+          isAnimate
+            ? positionTitle
+            : Dimensions.get('screen').width / 2 - titleSize / 2
+        }
+        style={{ fontSize: isAnimate ? fontSize : 18 }}>
         {title}
       </Title>
 
-      <Content bottomBackButton={positionBackButton}>
+      <Content bottomBackButton={isAnimate ? positionBackButton : 10}>
         <TouchableOpacity
           style={{ marginRight: 12 }}
           onPress={() => console.log('left')}>

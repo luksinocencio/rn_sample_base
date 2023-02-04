@@ -1,4 +1,7 @@
+import * as React from 'react';
 import { useRef } from 'react';
+import { HeaderAnimated } from '../../components/headerAnimated/HeaderAnimated';
+
 import {
   StyleSheet,
   Text,
@@ -7,7 +10,6 @@ import {
   TouchableOpacity,
   Button,
 } from 'react-native';
-import { HeaderAnimated } from '../../components/headerAnimated/HeaderAnimated';
 
 const data = [
   {
@@ -93,11 +95,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function App({ navigation }) {
+export default function App({ navigation }: any) {
   const scrollOffsetY = useRef(new Animated.Value(0)).current;
   return (
     <>
-      <HeaderAnimated animHeaderValue={scrollOffsetY} title="Home" />
+      <HeaderAnimated
+        animHeaderValue={scrollOffsetY}
+        title="Home"
+        // isAnimate={false}
+      />
       <Button
         onPress={() => navigation.navigate('PlayScreen')}
         title="clique aqui"

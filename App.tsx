@@ -1,15 +1,16 @@
 import * as React from 'react';
-import { useState, useEffect, useCallback } from 'react';
+import * as SplashScreen from 'expo-splash-screen';
+import DetailScreen from './src/pages/DetailScreen';
+import HomeScreen from './src/pages/HomeScreen';
+import PlayScreen from './src/pages/PlayScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
-
-import HomeScreen from './src/pages/HomeScreen';
-import DetailScreen from './src/pages/DetailScreen';
-import PlayScreen from './src/pages/PlayScreen';
+import { useCallback, useEffect, useState } from 'react';
+import { View } from 'react-native';
 
 const Stack = createNativeStackNavigator();
+SplashScreen.preventAutoHideAsync();
 
 function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -29,7 +30,7 @@ function App() {
   useEffect(() => {
     async function prepare() {
       try {
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        await new Promise((resolve) => setTimeout(resolve, 2000));
       } catch (e) {
         console.warn(e);
       } finally {
@@ -55,13 +56,15 @@ function App() {
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="DetailScreen" component={DetailScreen} />
-        <Stack.Screen name="PlayScreen" component={PlayScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View onLayout={onLayoutRootView} style={{ flex: 1 }}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="DetailScreen" component={DetailScreen} />
+          <Stack.Screen name="PlayScreen" component={PlayScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </View>
   );
 }
 

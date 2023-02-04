@@ -1,6 +1,6 @@
+import styled from 'styled-components/native';
 import { Animated, Platform } from 'react-native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
-import styled from 'styled-components/native';
 
 interface AnimatedProps {
   height: number;
