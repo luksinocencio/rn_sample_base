@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { useRef } from 'react';
-import { Animated, SafeAreaView, Text } from 'react-native';
+import { Animated, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { HeaderAnimated } from '../../components/headerAnimated/HeaderAnimated';
-import { TextField } from '../../components/textField';
+import { Input } from '../../components/input';
+import { Container } from './styles';
 
-export default function PlayScreen() {
+function PlayScreen() {
   const scrollOffsetY = useRef(new Animated.Value(0)).current;
 
   return (
@@ -14,10 +15,13 @@ export default function PlayScreen() {
         title="Playground"
         // isAnimate={false}
       />
-      <SafeAreaView style={{ flex: 1 }}>
-        <Text>Teste</Text>
-        <TextField />
-      </SafeAreaView>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <Container>
+          <Input hint="hint" />
+        </Container>
+      </TouchableWithoutFeedback>
     </>
   );
 }
+
+export default PlayScreen;

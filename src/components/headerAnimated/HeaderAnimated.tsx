@@ -1,6 +1,6 @@
 import ArrowLeft from '@expo/vector-icons/MaterialIcons';
-import React, { useState } from 'react';
 import { useNavigation, useNavigationState } from '@react-navigation/native';
+import React, { useState } from 'react';
 import { Dimensions, Platform, TouchableOpacity } from 'react-native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { BackButton, BackTextTitle, Container, Content, Title } from './styles';
@@ -62,7 +62,8 @@ export function HeaderAnimated({
           onPress={() => {
             console.log('voltar');
             navigation.goBack();
-          }}>
+          }}
+        >
           <ArrowLeft name="chevron-left" size={24} />
           <BackTextTitle>Voltar</BackTextTitle>
         </BackButton>
@@ -77,14 +78,16 @@ export function HeaderAnimated({
             ? positionTitle
             : Dimensions.get('screen').width / 2 - titleSize / 2
         }
-        style={{ fontSize: isAnimate ? fontSize : 18 }}>
+        style={{ fontSize: isAnimate ? fontSize : 18 }}
+      >
         {title}
       </Title>
 
       <Content bottomBackButton={isAnimate ? positionBackButton : 10}>
         <TouchableOpacity
           style={{ marginRight: 12 }}
-          onPress={() => console.log('left')}>
+          onPress={() => console.log('left')}
+        >
           <ArrowLeft name="image" size={24} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => console.log()}>
