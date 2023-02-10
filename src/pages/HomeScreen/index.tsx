@@ -3,12 +3,12 @@ import { useRef } from 'react';
 import { HeaderAnimated } from '../../components/headerAnimated/HeaderAnimated';
 
 import {
+  Animated,
+  Button,
+  FlatList,
   StyleSheet,
   Text,
-  Animated,
-  FlatList,
   TouchableOpacity,
-  Button,
 } from 'react-native';
 
 const data = [
@@ -22,7 +22,7 @@ const data = [
     id: 2,
     title: 'HUMILDADE',
     description: 'Estamos sempre abertos e disponíveis para ouvir.',
-    routeName: 'DetailScreen',
+    routeName: 'FeedbackPage',
   },
   {
     id: 3,
