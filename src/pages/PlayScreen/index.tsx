@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useRef } from 'react';
 import { Animated, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import Avatar from '../../components/avatar';
+
 import { HeaderAnimated } from '../../components/headerAnimated/HeaderAnimated';
 import { Input } from '../../components/input';
 import { Container } from './styles';
@@ -19,8 +19,6 @@ function PlayScreen() {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <Container>
           <Input hint="hint" />
-
-          <Avatar />
         </Container>
       </TouchableWithoutFeedback>
     </>

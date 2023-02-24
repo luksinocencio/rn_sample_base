@@ -6,6 +6,7 @@ import * as React from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
 import FeedbackPage from './src/components/feedbackPage';
+import AvatarScreen from './src/pages/AvatarScreen';
 import DetailScreen from './src/pages/DetailScreen';
 import HomeScreen from './src/pages/HomeScreen';
 import PlayScreen from './src/pages/PlayScreen';
@@ -64,6 +65,7 @@ function App() {
           <Stack.Screen name="DetailScreen" component={DetailScreen} />
           <Stack.Screen name="PlayScreen" component={PlayScreen} />
           <Stack.Screen name="FeedbackPage" component={FeedbackPage} />
+          <Stack.Screen name="AvatarScreen" component={AvatarScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

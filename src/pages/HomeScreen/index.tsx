@@ -28,7 +28,7 @@ const data = [
     id: 3,
     title: 'DETERMINAÇÃO',
     description: 'Cumprimos com aquilo que nos comprometemos.',
-    routeName: 'DetailScreen',
+    routeName: 'AvatarScreen',
   },
   {
     id: 4,
@@ -105,7 +105,7 @@ export default function App({ navigation }: any) {
         // isAnimate={false}
       />
       <Button
-        onPress={() => navigation.navigate('PlayScreen')}
+        onPress={() => navigation.navigate('FeedbackPage')}
         title="clique aqui"
       />
       <FlatList
